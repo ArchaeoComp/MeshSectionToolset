@@ -1,12 +1,15 @@
 # MeshSectionToolset
 
 An open-source toolkit for archaeologists and researchers to explore 3D artifacts, especially pottery. This project simplifies morphometric analysis by leveraging Blender's Geometry Nodes and Python scripting.
+This code is part of the article: Košťál, M. - Nosek, V. - Macháček, J. 2025. Advancing the Morphometric Analysis of Early Medieval Slavic Pottery: A Semi-Automated 3D Toolset for Virtual Sections. Journal of Archaeological Science https://doi.org/10.1016/j.jas.2025.106314
 
 ---
 
 ## Description
 
-MeshSectionToolset facilitates the semi-automated generation of virtual cross-sections for 3D models. Designed for non-standard, asymmetrical, handmade artifacts like pottery, it extracts morphometric data and exports it for further analysis. The toolset is optimized for speed, precision, and accessibility to researchers with minimal programming experience. This archive contains two subfolders:
+MeshSectionToolset facilitates the semi-automated generation of virtual cross-sections for 3D models. Designed for non-standard, asymmetrical, handmade artifacts like pottery, it extracts morphometric data and exports it for further analysis. The toolset is optimized for speed, precision, and accessibility to researchers with minimal programming experience. It is based on the Blender 4.3 software. This archive contains two subfolders:
+
+### General section generator - tool for quick sectioning of the 3D models
 
 ### Data_extraction_blend_files
  - `Slicing_tool_pottery.blend` - file with geometry nodes setup to perform 3D model to 2D sections (polylines)
@@ -18,11 +21,13 @@ MeshSectionToolset facilitates the semi-automated generation of virtual cross-se
 ### R_code_and_visualization
 
  - `JASC24-639_PCoA_analysis_used.R` - the R code used for calculation of the PCoA based on the extracted datasets
- - `Folder data/JASC24-639_Data_PCoA_used.txt` - dataset used in the article: article_doi
+ - `Folder data/JASC24-639_Data_PCoA_used.txt` - dataset used in the article: (article_doi)
+ - `Folder data/Hindex dataset.csv` - results of PCoA analysis, that can be used for pots visualization in All_pots_decimated_for_PCoA_visualization.blend
+ - `Folder data/Technology similarity.csv` - results of PCoA analysis, that can be used for pots visualization in All_pots_decimated_for_PCoA_visualization.blend
  - `All_pots_decimated_for_PCoA_visualization.blend` - example blend file with decimated 3D models (used only for visualizations)
  - `Load_CSV_file_with_coordinates.py` - python file for loading of the data from the datasets (in .txt format, extracted by "Extract_modd_data_v2.py"). It is mandatory to run this  from the "Scripting" tab in the Blender software (see the All_pots_decimated_for_PCoA_visualization.blend)   
 
-**Note**: The Numpy and Pandas python lybraries must be installed in the python libraries (look at the end of the README file for tips). Also, basic knowledge of 3D concepts and Blender software is recommended
+**Note**: The Numpy and Pandas python libraries must be installed in the python libraries (look at the end of the README file for tips). Also, basic knowledge of 3D concepts and Blender software is recommended
 
 ---
 ## Features
@@ -74,7 +79,7 @@ All files contains examples
 ---
 ## Basic/Optional workflow (tutorial)
 
- - 1. Import your pre-oriented data into the Blender (or orient them in Blender instead), and apply their scale and transformation (select all objects in Blender, press `Ctrl+A` and select `Rotation & Scale` option.
+ - 1. Import your pre-oriented data into the Blender (or orient them in Blender instead), and apply their scale and transformation (select all objects in Blender, press `Ctrl+A` and select `Rotation & Scale` option.)
  - 2. Append `Centre_bottom_to_origin_v2` from `Centre_bottom_to_origin.blend` file (In blender select "File -> Append...", the context menu will appears, find `Centre_bottom_to_origin.blend` and double click on it -> `NodeTree/Centre_bottom_to_origin_v2_append_this` (same logic will be used for every other append)).
  - 3. Select one of our 3D scans, switch to modifier tab (blue spanner icon) and click od `Add Modifier`, than select `Geometry nodes` and search for `Centre_bottom_to_origin_v2_append_this`. Apply modifier.
  - 4. Repeat the process but for `SlicingTool Pottery`. before applying, you can set vertical distance between cuts (`Distance`) and angular distance bewteen cuts (`degree`). By `Rotate to origin`, you will set all cuts to z,y plane. `Partial curves` allows quick check if selection of inside/outside of pottery works (this should be turned off for next processing).
@@ -85,8 +90,9 @@ All files contains examples
 
 ## Requirements
 
-- Blender 4.0+ with Geometry Nodes support.
+- Blender 4.3+ with Geometry Nodes support.
 - Python 3.x with Pandas and Numpy libraries.
+- Rstudio 2024.09.0+375 and newer
 
 ---
 
